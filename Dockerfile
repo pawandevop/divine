@@ -3,6 +3,9 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
+# Set a dummy MongoDB URI for build to bypass build-time checks
+ENV MONGODB_URI="mongodb://dummy:dummy@dummy:27017/dummy"
+
 # Install dependencies
 COPY package*.json ./
 RUN npm install
