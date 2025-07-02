@@ -69,17 +69,6 @@ export async function POST(request) {
         if (!gcsUrl) {
           return NextResponse.json({ success: false, error: 'Failed to upload to cloud storage.' }, { status: 500 });
         }
-        // Robust check: verify the file is accessible
-        let isAccessible = false;
-        try {
-          const res = await fetch(gcsUrl, { method: 'HEAD' });
-          isAccessible = res.ok;
-        } catch (err) {
-          isAccessible = false;
-        }
-        if (!isAccessible) {
-          return NextResponse.json({ success: false, error: 'File uploaded but not accessible. Please try again.' }, { status: 500 });
-        }
         imageUrls.push(gcsUrl);
       }
     }

@@ -177,7 +177,16 @@ export default function EditBlogPost() {
             </div>
             {existingImages.length > 0 && (
               <div className="blog-create-image-previews">
-                <img src={existingImages[0]} alt="existing" />
+                {(() => {
+                  const img = existingImages.find(url => url && url.startsWith('https://storage.googleapis.com/'));
+                  return img ? (
+                    <img src={img} alt="existing" />
+                  ) : (
+                    <div style={{ padding: 24, textAlign: 'center', color: '#b97a3a' }}>
+                      No images available.
+                    </div>
+                  );
+                })()}
               </div>
             )}
             {previews.length > 0 && (

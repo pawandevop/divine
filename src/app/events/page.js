@@ -23,7 +23,10 @@ export default function Results() {
         const response = await fetch('/api/event');
         const data = await response.json();
         if (data.success) {
-          setImages(data.data.filter(item => item.active !== false).map(item => item.imageUrl));
+          setImages(data.data
+            .map(item => item.imageUrl)
+            .filter(url => url && url.startsWith('https://storage.googleapis.com/'))
+          );
         } else {
           setImages([]);
         }

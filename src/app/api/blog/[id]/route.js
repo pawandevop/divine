@@ -5,6 +5,7 @@ import Blog from '@/models/Blog';
 import { handleCors } from '@/utils/cors';
 import path from 'path';
 import { writeFile } from 'fs/promises';
+import { uploadBufferToGCS } from '@/utils/gcs';
 
 // Allowed image types for blog uploads
 const ALLOWED_MIME = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'];
@@ -55,10 +56,12 @@ export async function PUT(request, { params }) {
         const filename = path.basename(file.name).replace(/\\/g, '/');
         const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1E9)}`;
         const newFilename = `${uniqueSuffix}-${filename}`;
-        const uploadDir = path.join(process.cwd(), 'public/uploads/blog');
-        const filePath = path.join(uploadDir, newFilename);
-        await writeFile(filePath, buffer);
-        imageUrls.push(`/uploads/blog/${newFilename}`);
+        // Upload to GCS
+        const gcsUrl = await uploadBufferToGCS(buffer, `blog/${newFilename}`, file.type);
+        if (!gcsUrl) {
+          return NextResponse.json({ success: false, error: 'Failed to upload to cloud storage.' }, { status: 500 });
+        }
+        imageUrls.push(gcsUrl);
       }
       update.images = imageUrls;
     }

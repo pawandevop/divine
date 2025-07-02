@@ -14,6 +14,7 @@ export default function EventDashboard() {
   const [toast, setToast] = useState(null);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [imageLoading, setImageLoading] = useState(true);
 
   useEffect(() => {
     async function fetchImages() {
@@ -136,23 +137,35 @@ export default function EventDashboard() {
             ) : uploadedImages.length > 0 ? (
               <div className="uploaded-images-grid">
                 {(() => {
-                  const img = uploadedImages[0];
-                  return img ? (
-                    <div key={img._id || img.imageUrl || 0} className="uploaded-image-card">
-                      <img src={img.imageUrl} alt="Latest uploaded event image" />
-                      <a href={img.imageUrl} target="_blank" rel="noopener noreferrer" className="view-link">
-                        <FiExternalLink /> View Full Size
-                      </a>
-                      <button
-                        className="delete-icon-btn"
-                        onClick={() => handleDeleteConfirm(img._id)}
-                        title="Delete"
-                        style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', padding: 6, cursor: 'pointer', zIndex: 2 }}
-                      >
-                        <FiTrash size={18} color="#fff" />
-                      </button>
-                    </div>
-                  ) : null;
+                  const validImages = uploadedImages.filter(img => img.imageUrl && img.imageUrl.startsWith('https://storage.googleapis.com/'));
+                  if (validImages.length > 0) {
+                    return validImages.map((img, idx) => (
+                      <div key={img._id || img.imageUrl || idx} className="uploaded-image-card">
+                        <img
+                          src={img.imageUrl}
+                          alt={`Uploaded event image ${idx + 1}`}
+                          style={{ width: '100%', height: 200, objectFit: 'cover' }}
+                        />
+                        <a href={img.imageUrl} target="_blank" rel="noopener noreferrer" className="view-link">
+                          <FiExternalLink /> View Full Size
+                        </a>
+                        <button
+                          className="delete-icon-btn"
+                          onClick={() => handleDeleteConfirm(img._id)}
+                          title="Delete"
+                          style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', padding: 6, cursor: 'pointer', zIndex: 2 }}
+                        >
+                          <FiTrash size={18} color="#fff" />
+                        </button>
+                      </div>
+                    ));
+                  } else {
+                    return (
+                      <div style={{ padding: 24, textAlign: 'center', color: '#b97a3a' }}>
+                        No event images available.
+                      </div>
+                    );
+                  }
                 })()}
               </div>
             ) : (
@@ -161,6 +174,13 @@ export default function EventDashboard() {
           </div>
         </div>
       </div>
+
+      <style jsx global>{`
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      `}</style>
     </>
   );
 } 

@@ -127,31 +127,29 @@ export default function BlogDashboard() {
                   </thead>
 
                   <tbody>
-                    {blogPosts.length === 0 ? (
-                      <tr><td colSpan={5} style={{ textAlign: 'center' }}>No blog posts found.</td></tr>
-                    ) : (
-                      (() => {
-                        const post = blogPosts[0];
-                        return post ? (
-                          <tr key={post._id}>
-                            <td className="sno-cell">1</td>
-                            <td className="title-cell">{post.title}</td>
-                            <td className="category-cell">{post.category}</td>
-                            <td className="published-cell">
-                              {post.status === 'published' ? (
-                                <span className="yes">Yes</span>
-                              ) : (
-                                <span className="no">No</span>
-                              )}
-                            </td>
-                            <td className="blog-dashboard-actions">
-                              <button className="edit-btn" onClick={() => handleEdit(post._id)}><FiEdit3 /> Edit</button>
-                              <button className="delete-btn" onClick={() => handleDelete(post._id)}><FiTrash2 /> Delete</button>
-                            </td>
-                          </tr>
-                        ) : null;
-                      })()
-                    )}
+                    {(() => {
+                      const post = blogPosts.find(p => Array.isArray(p.images) && p.images.some(url => url && url.startsWith('https://storage.googleapis.com/')));
+                      return post ? (
+                        <tr key={post._id}>
+                          <td className="sno-cell">1</td>
+                          <td className="title-cell">{post.title}</td>
+                          <td className="category-cell">{post.category}</td>
+                          <td className="published-cell">
+                            {post.status === 'published' ? (
+                              <span className="yes">Yes</span>
+                            ) : (
+                              <span className="no">No</span>
+                            )}
+                          </td>
+                          <td className="blog-dashboard-actions">
+                            <button className="edit-btn" onClick={() => handleEdit(post._id)}><FiEdit3 /> Edit</button>
+                            <button className="delete-btn" onClick={() => handleDelete(post._id)}><FiTrash2 /> Delete</button>
+                          </td>
+                        </tr>
+                      ) : (
+                        <tr><td colSpan={5} style={{ textAlign: 'center' }}>No blog posts found.</td></tr>
+                      );
+                    })()}
                   </tbody>
                 </table>
               )}

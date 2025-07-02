@@ -25,7 +25,10 @@ export default function Results() {
         const res = await fetch(`/api/results?page=${page}&limit=${limit}`);
         const data = await res.json();
         if (data.success) {
-          setImages(data.data.map(img => img.imageUrl));
+          const gcsImages = data.data
+            .map(img => img.imageUrl)
+            .filter(url => url && url.startsWith('https://storage.googleapis.com/'));
+          setImages(gcsImages);
           setTotalPages(data.totalPages || 1);
         }
       } finally {
