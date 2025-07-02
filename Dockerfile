@@ -34,9 +34,5 @@ COPY --from=builder /app/package-lock.json ./package-lock.json
 # If you use other config files, copy them as needed
 # COPY --from=builder /app/jsconfig.json ./jsconfig.json
 
-# Cloud Run sets PORT env var, Next.js uses 3000 by default
-ENV PORT=8080
-EXPOSE 8080
-
 # Start Next.js app
-CMD ["npx", "next", "start", "-p", "8080"]
+CMD ["npx", "next", "start"]
