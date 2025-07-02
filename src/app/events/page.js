@@ -24,8 +24,7 @@ export default function Results() {
         const data = await response.json();
         if (data.success) {
           setImages(data.data
-            .map(item => item.imageUrl)
-            .filter(url => url && url.startsWith('https://storage.googleapis.com/'))
+            .filter(item => item.imageUrl && item.imageUrl.startsWith('https://storage.googleapis.com/'))
           );
         } else {
           setImages([]);
@@ -63,11 +62,16 @@ export default function Results() {
             {isLoading ? (
               <p>Loading images...</p>
             ) : images.length > 0 ? (
-              images.map((src, idx) => (
-                <div className="col-lg-6 col-md-6 col-sm-12 mb-4" key={src}>
+              images.map((img, idx) => (
+                <div className="col-lg-6 col-md-6 col-sm-12 mb-4" key={img.imageUrl}>
                   <div className="lightbox" onClick={() => openLightbox(idx)}>
-                    <img src={src} alt={`Gallery ${idx + 1}`} loading="lazy" style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
+                    <img src={img.imageUrl} alt={`Gallery ${idx + 1}`} loading="lazy" style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
                   </div>
+                  {img.caption && (
+                    <div style={{ color: '#fff', background: '#b97a3a', fontSize: 13, padding: '4px 8px', borderRadius: 6, marginTop: 6, textAlign: 'center' }}>
+                      {img.caption}
+                    </div>
+                  )}
                 </div>
               ))
             ) : (
@@ -81,7 +85,7 @@ export default function Results() {
           <div id="lightbox" className="show" onClick={closeLightbox}>
             <span id="close-icon" onClick={closeLightbox}>&#10006;</span>
             <span id="prev-arrow" onClick={e => { e.stopPropagation(); prevImage(); }}>&#10094;</span>
-            <img src={images[lightbox.index]} alt="Large" />
+            <img src={images[lightbox.index].imageUrl} alt="Large" />
             <span id="next-arrow" onClick={e => { e.stopPropagation(); nextImage(); }}>&#10095;</span>
           </div>
         )}

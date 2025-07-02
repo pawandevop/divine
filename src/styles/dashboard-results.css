@@ -21,6 +21,7 @@
 }
 
 .results-card {
+  /* TEMP TEST STYLES REMOVED */
   background: #fff;
   border-radius: 22px;
   box-shadow: 0 8px 32px #b97a3a22, 0 1.5px 8px #ef9b0f11;
@@ -118,6 +119,7 @@
   max-width: none;
   padding-left: 0;
   padding-right: 0;
+  text-align: center;
 }
 
 .uploaded-results-grid {

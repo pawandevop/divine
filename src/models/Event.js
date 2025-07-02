@@ -12,6 +12,13 @@ const EventSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  // Optional caption for the event image
+  caption: {
+    type: String,
+    trim: true,
+    maxlength: 300,
+    required: false,
+  },
 });
 
 export default mongoose.models.Event || mongoose.model('Event', EventSchema); 

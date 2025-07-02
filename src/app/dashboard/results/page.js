@@ -142,6 +142,11 @@ export default function ResultsDashboard() {
                   .map(result => (
                     <div key={result._id} className="uploaded-result-card">
                       <img src={result.imageUrl} alt="Uploaded result" />
+                      {result.caption && (
+                        <div style={{ color: '#fff', background: '#b97a3a', fontSize: 13, padding: '4px 8px', borderRadius: 6, marginTop: 6, textAlign: 'center' }}>
+                          {result.caption}
+                        </div>
+                      )}
                       <a href={result.imageUrl} target="_blank" rel="noopener noreferrer" className="view-link">
                         <FiExternalLink /> View Full Size
                       </a>
@@ -157,7 +162,21 @@ export default function ResultsDashboard() {
                   ))}
               </div>
             ) : (
-              <p>No results have been uploaded yet.</p>
+              <div
+                className="uploaded-results-grid"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  minHeight: '180px',
+                  width: '100%',
+                  flexDirection: 'column',
+                }}
+              >
+                <div style={{ color: '#b97a3a', textAlign: 'center', width: '100%' }}>
+                  No results have been uploaded yet.
+                </div>
+              </div>
             )}
           </div>
         </div>

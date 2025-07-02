@@ -26,8 +26,7 @@ export default function Results() {
         const data = await res.json();
         if (data.success) {
           const gcsImages = data.data
-            .map(img => img.imageUrl)
-            .filter(url => url && url.startsWith('https://storage.googleapis.com/'));
+            .filter(img => img.imageUrl && img.imageUrl.startsWith('https://storage.googleapis.com/'));
           setImages(gcsImages);
           setTotalPages(data.totalPages || 1);
         }
@@ -64,11 +63,16 @@ export default function Results() {
             ) : images.length === 0 ? (
               <div style={{ textAlign: 'center', width: '100%' }}>No results uploaded yet.</div>
             ) : (
-              images.map((src, idx) => (
-                <div className="col-lg-6 col-md-6 col-sm-12 mb-4" key={src}>
+              images.map((img, idx) => (
+                <div className="col-lg-6 col-md-6 col-sm-12 mb-4" key={img.imageUrl}>
                   <div className="lightbox" onClick={() => openLightbox(idx)}>
-                    <img src={src} alt={`Gallery ${idx + 1}`} loading="lazy" style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
+                    <img src={img.imageUrl} alt={`Gallery ${idx + 1}`} loading="lazy" style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
                   </div>
+                  {img.caption && (
+                    <div style={{ color: '#fff', background: '#b97a3a', fontSize: 13, padding: '4px 8px', borderRadius: 6, marginTop: 6, textAlign: 'center' }}>
+                      {img.caption}
+                    </div>
+                  )}
                 </div>
               ))
             )}
@@ -110,7 +114,7 @@ export default function Results() {
           <div id="lightbox" className="show" onClick={closeLightbox}>
             <span id="close-icon" onClick={closeLightbox}>&#10006;</span>
             <span id="prev-arrow" onClick={e => { e.stopPropagation(); prevImage(); }}>&#10094;</span>
-            <img src={images[lightbox.index]} alt="Large" />
+            <img src={images[lightbox.index].imageUrl} alt="Large" />
             <span id="next-arrow" onClick={e => { e.stopPropagation(); nextImage(); }}>&#10095;</span>
           </div>
         )}

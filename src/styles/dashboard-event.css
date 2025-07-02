@@ -108,6 +108,7 @@
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #444;
+  text-align: center;
 }
 
 .uploaded-section {
@@ -123,6 +124,7 @@
   max-width: none;
   padding-left: 0;
   padding-right: 0;
+  text-align: center;
 }
 
 .uploaded-images-grid {

@@ -20,6 +20,7 @@ export async function POST(request) {
     // Parse form data
     const data = await request.formData();
     const files = data.getAll('files');
+    const captions = data.getAll('captions'); // Array of captions, may be empty or shorter than files
 
     // No files uploaded
     if (!files || files.length === 0) {
@@ -38,7 +39,7 @@ export async function POST(request) {
     const uploadedFilePaths = [];
 
     // Save each file to GCS and database
-    for (const file of files) {
+    for (const [i, file] of files.entries()) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
       // Sanitize and uniquify filename
@@ -51,8 +52,9 @@ export async function POST(request) {
         return NextResponse.json({ success: false, error: 'Failed to upload to cloud storage.' }, { status: 500 });
       }
       uploadedFilePaths.push(gcsUrl);
-      // Save file URL to database
-      const newEventItem = new Event({ imageUrl: gcsUrl });
+      // Save file URL and caption to database
+      const caption = captions && captions[i] ? captions[i] : '';
+      const newEventItem = new Event({ imageUrl: gcsUrl, caption });
       await newEventItem.save();
     }
 

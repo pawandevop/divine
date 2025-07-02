@@ -20,6 +20,7 @@ export async function POST(request) {
     // Parse form data
     const data = await request.formData();
     const files = data.getAll('files');
+    const captions = data.getAll('captions'); // Array of captions, may be empty or shorter than files
 
     // No files uploaded
     if (!files || files.length === 0) {
@@ -38,7 +39,7 @@ export async function POST(request) {
     const uploadedFilePaths = [];
 
     // Save each file to GCS and database
-    for (const file of files) {
+    for (const [i, file] of files.entries()) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
       // Sanitize and uniquify filename
@@ -62,8 +63,9 @@ export async function POST(request) {
         return NextResponse.json({ success: false, error: 'File uploaded but not accessible. Please try again.' }, { status: 500 });
       }
       uploadedFilePaths.push(gcsUrl);
-      // Save file URL to database
-      const newResultItem = new Result({ imageUrl: gcsUrl });
+      // Save file URL and caption to database
+      const caption = captions && captions[i] ? captions[i] : '';
+      const newResultItem = new Result({ imageUrl: gcsUrl, caption });
       await newResultItem.save();
     }
 

@@ -1,6 +1,7 @@
 "use client";
 import '@/styles/backend-auth.css';
-import '@/styles/dashboard-event.css';
+import '@/styles/dashboard-results.css';
+// import '@/styles/dashboard-event.css';
 import DashboardNavbar from '@/components/DashboardNavbar';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -110,66 +111,72 @@ export default function EventDashboard() {
 
       <DashboardNavbar onLogout={handleLogout} />
 
-      <div className="gallery-bg">
-        <div className="gallery-card gallery-dashboard-card">
-          <div className="gallery-heading">
-            <FiImage size={32} className="gallery-heading-icon" />
+      <div className="results-bg">
+        <div className="results-card results-dashboard-card">
+          <div className="results-heading">
+            <FiImage size={32} style={{ color: '#b97a3a', marginBottom: -4 }} />
             Event Upload
             <span className="divider" />
           </div>
 
-          <div className="gallery-desc">
+          <div className="results-desc">
             Upload and manage your event images here.
           </div>
 
-          <div className="gallery-widgets">
+          <div className="results-widgets">
             <h3>Upload New Event Images</h3>
             <ImageUpload onUpload={handleUpload} apiEndpoint="/api/event/upload" />
           </div>
 
-          <div className="gallery-widgets uploaded-section">
-            <h3>Event Images</h3>
+          <div className="results-widgets uploaded-section">
+            <h3>Uploaded Event Images</h3>
             <div style={{ color: '#b97a3a', marginBottom: 12, fontSize: 15 }}>
               If you don&apos;t see your latest upload, please refresh the page.
             </div>
             {isLoading ? (
               <p>Loading images...</p>
             ) : uploadedImages.length > 0 ? (
-              <div className="uploaded-images-grid">
-                {(() => {
-                  const validImages = uploadedImages.filter(img => img.imageUrl && img.imageUrl.startsWith('https://storage.googleapis.com/'));
-                  if (validImages.length > 0) {
-                    return validImages.map((img, idx) => (
-                      <div key={img._id || img.imageUrl || idx} className="uploaded-image-card">
-                        <img
-                          src={img.imageUrl}
-                          alt={`Uploaded event image ${idx + 1}`}
-                          style={{ width: '100%', height: 200, objectFit: 'cover' }}
-                        />
-                        <a href={img.imageUrl} target="_blank" rel="noopener noreferrer" className="view-link">
-                          <FiExternalLink /> View Full Size
-                        </a>
-                        <button
-                          className="delete-icon-btn"
-                          onClick={() => handleDeleteConfirm(img._id)}
-                          title="Delete"
-                          style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', padding: 6, cursor: 'pointer', zIndex: 2 }}
-                        >
-                          <FiTrash size={18} color="#fff" />
-                        </button>
-                      </div>
-                    ));
-                  } else {
-                    return (
-                      <div style={{ padding: 24, textAlign: 'center', color: '#b97a3a' }}>
-                        No event images available.
-                      </div>
-                    );
-                  }
-                })()}
+              <div className="uploaded-results-grid">
+                {uploadedImages
+                  .filter(img => img.imageUrl && img.imageUrl.startsWith('https://storage.googleapis.com/'))
+                  .map(img => (
+                    <div key={img._id || img.imageUrl} className="uploaded-result-card">
+                      <img src={img.imageUrl} alt="Uploaded event" />
+                      {img.caption && (
+                        <div style={{ color: '#fff', background: '#b97a3a', fontSize: 13, padding: '4px 8px', borderRadius: 6, marginTop: 6, textAlign: 'center' }}>
+                          {img.caption}
+                        </div>
+                      )}
+                      <a href={img.imageUrl} target="_blank" rel="noopener noreferrer" className="view-link">
+                        <FiExternalLink /> View Full Size
+                      </a>
+                      <button
+                        className="delete-icon-btn"
+                        onClick={() => handleDeleteConfirm(img._id)}
+                        title="Delete"
+                        style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', padding: 6, cursor: 'pointer', zIndex: 2 }}
+                      >
+                        <FiTrash size={18} color="#fff" />
+                      </button>
+                    </div>
+                  ))}
               </div>
             ) : (
-              <p>No event images have been uploaded yet.</p>
+              <div
+                className="uploaded-results-grid"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  minHeight: '180px',
+                  width: '100%',
+                  flexDirection: 'column',
+                }}
+              >
+                <div style={{ color: '#b97a3a', textAlign: 'center', width: '100%' }}>
+                  No event images available.
+                </div>
+              </div>
             )}
           </div>
         </div>

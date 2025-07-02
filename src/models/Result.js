@@ -12,6 +12,13 @@ const ResultSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  // Optional caption for the result image
+  caption: {
+    type: String,
+    trim: true,
+    maxlength: 300,
+    required: false,
+  },
 });
 
 export default mongoose.models.Result || mongoose.model('Result', ResultSchema); 
