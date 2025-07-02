@@ -51,15 +51,23 @@ export default function BlogPostClient({ blog, error }) {
       ]} />
       <section id="hero" className="blog-hero-section">
         <div className="container">
-          <div className="row align-items-center flex-column-reverse flex-md-row">
-            <div className="col-md-6 hero-content">
-              <h1 className="common_heading">{blog.title}</h1>
+          <div className="row justify-content-center">
+            <div className="col-12 text-center hero-image-container">
+              <img src={blog.images && blog.images.length > 0 ? blog.images[0] : "/img/img99.jpg"} alt={blog.title} className="hero-image" />
+            </div>
+            <div className="col-12 hero-content" style={{ marginTop: 24 }}>
+              <h1 className="common_heading" style={{ textAlign: 'center' }}>{blog.title}</h1>
+              <div style={{ textAlign: 'center', color: '#b97a3a', fontSize: 16, margin: '12px 0 24px 0' }}>
+                <span>By <b>Divine Elite Wellness</b></span>
+                {blog.createdAt && (
+                  <span style={{ marginLeft: 16 }}>
+                    | Published on {new Date(blog.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </span>
+                )}
+              </div>
               <div className="second_sec_content hero-text">
                 <div dangerouslySetInnerHTML={{ __html: blog.body }} />
               </div>
-            </div>
-            <div className="col-md-6 text-center hero-image-container">
-              <img src={blog.images && blog.images.length > 0 ? blog.images[0] : "/img/img99.jpg"} alt={blog.title} className="hero-image" />
             </div>
             <div className="decorative-accent" />
           </div>

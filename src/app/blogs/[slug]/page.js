@@ -2,15 +2,16 @@ import React from "react";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
-import ContactSection from '@/components/ContactSection';
+import dynamic from 'next/dynamic';
 import SocialButtons from '@/components/SocialButtons';
 import Modal from '@/components/Modal';
 import MobileTabs from '@/components/MobileTabs';
 import BlogPostClient from '@/components/BlogPostClient';
+import BlogClientShell from '@/components/BlogClientShell';
 import { headers } from 'next/headers';
 
 export default async function BlogPost(props) {
-  const { params } = await props;
+  const { params } = props;
   let blog = null;
   let error = null;
   try {
@@ -28,8 +29,7 @@ export default async function BlogPost(props) {
 
   return (
     <>
-      <BlogPostClient blog={blog} error={error} />
-      <ContactSection />
+      <BlogClientShell blog={blog} error={error} />
       <Footer />
     </>
   );
