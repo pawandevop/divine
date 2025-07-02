@@ -137,33 +137,24 @@ export default function ResultsDashboard() {
               <p>Loading results...</p>
             ) : uploadedResults.length > 0 ? (
               <div className="uploaded-results-grid">
-                {(() => {
-                  const result = uploadedResults.find(img => img.imageUrl && img.imageUrl.startsWith('https://storage.googleapis.com/'));
-                  if (result && result.imageUrl) {
-                    return (
-                      <div key={result._id} className="uploaded-result-card">
-                        <img src={result.imageUrl} alt="Latest uploaded result" />
-                        <a href={result.imageUrl} target="_blank" rel="noopener noreferrer" className="view-link">
-                          <FiExternalLink /> View Full Size
-                        </a>
-                        <button
-                          className="delete-icon-btn"
-                          onClick={() => handleDeleteConfirm(result._id)}
-                          title="Delete"
-                          style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', padding: 6, cursor: 'pointer', zIndex: 2 }}
-                        >
-                          <FiTrash size={18} color="#fff" />
-                        </button>
-                      </div>
-                    );
-                  } else {
-                    return (
-                      <div style={{ padding: 24, textAlign: 'center', color: '#b97a3a' }}>
-                        No results have been uploaded yet.
-                      </div>
-                    );
-                  }
-                })()}
+                {uploadedResults
+                  .filter(img => img.imageUrl && img.imageUrl.startsWith('https://storage.googleapis.com/'))
+                  .map(result => (
+                    <div key={result._id} className="uploaded-result-card">
+                      <img src={result.imageUrl} alt="Uploaded result" />
+                      <a href={result.imageUrl} target="_blank" rel="noopener noreferrer" className="view-link">
+                        <FiExternalLink /> View Full Size
+                      </a>
+                      <button
+                        className="delete-icon-btn"
+                        onClick={() => handleDeleteConfirm(result._id)}
+                        title="Delete"
+                        style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', padding: 6, cursor: 'pointer', zIndex: 2 }}
+                      >
+                        <FiTrash size={18} color="#fff" />
+                      </button>
+                    </div>
+                  ))}
               </div>
             ) : (
               <p>No results have been uploaded yet.</p>

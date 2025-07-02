@@ -127,11 +127,10 @@ export default function BlogDashboard() {
                   </thead>
 
                   <tbody>
-                    {(() => {
-                      const post = blogPosts.find(p => Array.isArray(p.images) && p.images.some(url => url && url.startsWith('https://storage.googleapis.com/')));
-                      return post ? (
+                    {blogPosts.filter(p => Array.isArray(p.images) && p.images.some(url => url && url.startsWith('https://storage.googleapis.com/')))
+                      .map((post, idx) => (
                         <tr key={post._id}>
-                          <td className="sno-cell">1</td>
+                          <td className="sno-cell">{idx + 1}</td>
                           <td className="title-cell">{post.title}</td>
                           <td className="category-cell">{post.category}</td>
                           <td className="published-cell">
@@ -146,10 +145,10 @@ export default function BlogDashboard() {
                             <button className="delete-btn" onClick={() => handleDelete(post._id)}><FiTrash2 /> Delete</button>
                           </td>
                         </tr>
-                      ) : (
-                        <tr><td colSpan={5} style={{ textAlign: 'center' }}>No blog posts found.</td></tr>
-                      );
-                    })()}
+                      ))}
+                    {blogPosts.filter(p => Array.isArray(p.images) && p.images.some(url => url && url.startsWith('https://storage.googleapis.com/'))).length === 0 && (
+                      <tr><td colSpan={5} style={{ textAlign: 'center' }}>No blog posts found.</td></tr>
+                    )}
                   </tbody>
                 </table>
               )}
