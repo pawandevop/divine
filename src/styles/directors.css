@@ -1,0 +1,93 @@
+.docSection {
+  padding-top: 40px;
+}
+.docSection.last {
+  padding-bottom: 40px;
+}
+.docSection .docContainer {
+  display: flex;
+  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+}
+.docSection .docImage {
+  width: 30%;
+  margin-top: 5%;
+}
+.docImage img {
+  margin: 5%;
+  height: 90%;
+  width: 100%;
+  border: 2px solid #cda05c;
+  border-radius: 10%;
+  /* width: 100%;
+  min-height: 100%; */
+  /* object-fit: cover; */
+}
+.docContent {
+  padding: 40px;
+  width: 70%;
+}
+.docContent span {
+  display: block;
+  color: #cda05c;
+}
+.docContent span:first-child {
+  font-size: 22px;
+}
+.docContent span:nth-child(2) {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #cda05c;
+}
+.docContent .doc-para {
+  /* max-height: 500px;
+  overflow: auto; */
+  padding-right: 10px;
+}
+.docContent .doc-para::-webkit-scrollbar {
+  width: 5px;
+}
+.docContent .doc-para::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+.docContent .doc-para::-webkit-scrollbar-thumb {
+  background: #cda05c;
+  border-radius: 10px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .docSection {
+    padding: 20px 0;
+  }
+  .docSection .docContainer {
+    flex-direction: column;
+  }
+  .docContent,
+  .docSection{
+    width: 100%;
+  }
+  .docImage{
+    width:100%;
+    margin-top: 5%;
+    margin-left: 30%;
+  } 
+  .docContent {
+    padding: 20px;
+  }
+  .docContent .doc-para {
+    max-height: 150px;
+    overflow: scroll;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .docContent .doc-para {
+    max-height: 190px;
+    overflow: auto;
+  }
+  .docContent,
+  .docSection{
+    width: 50%;
+  }
+    .docImage{
+    width:100% ;
+  }
+}

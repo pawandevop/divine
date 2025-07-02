@@ -1,0 +1,140 @@
+/* Styles for BlogPostClient.js */
+
+/* Accordion */
+.accordion-item {
+  margin-bottom: 8px;
+}
+
+.accordion-btn {
+  width: 100%;
+  text-align: left;
+  background: #c49a5a;
+  color: #fff;
+  border: none;
+  padding: 18px 24px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.accordion-btn .accordion-icon {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.panel {
+  max-height: 0;
+  overflow: hidden;
+  background: #fff;
+  color: #222;
+  transition: max-height 0.3s ease;
+  padding: 0 24px;
+  border: 1px solid transparent;
+  border-top: none;
+}
+
+.panel.open {
+  max-height: 500px;
+  padding: 18px 24px;
+  border-color: #c49a5a;
+}
+
+.panel p {
+  margin: 0;
+}
+
+/* Hero Section */
+.blog-hero-section {
+  background: linear-gradient(90deg, #fff8ec 60%, #f8e7c6 100%);
+  padding: 60px 0 40px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content,
+.hero-image-container {
+  z-index: 2;
+}
+
+.hero-text {
+  color: #444;
+}
+
+.hero-image {
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(196, 154, 90, 0.18);
+  max-width: 100%;
+  width: 400px;
+  object-fit: cover;
+  margin-bottom: 24px;
+}
+
+.decorative-accent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle at 80% 20%, #f8e7c6 0%, #fff8ec 100%);
+  z-index: 1;
+  border-bottom-left-radius: 220px;
+  opacity: 0.5;
+}
+
+/* Treatment Options */
+.treatment-options-section {
+  padding: 40px 0;
+}
+
+.treatment-option-card {
+  background: #f8f5ef;
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  height: 100%;
+}
+
+.treatment-icon {
+  font-size: 40px;
+}
+
+.treatment-title {
+  font-size: 20px;
+  margin: 16px 0 8px;
+}
+
+.treatment-desc {
+  font-size: 15px;
+}
+
+/* Prevention & Cost */
+.prevention-cost-section {
+  padding: 40px 0;
+}
+
+.info-box {
+  background: #f8f5ef;
+  border-radius: 10px;
+  padding: 24px;
+  height: 100%;
+}
+
+.info-box-title {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.info-box-list {
+  font-size: 15px;
+  padding-left: 20px;
+}
+
+.info-box-list li {
+  margin-bottom: 8px;
+}

@@ -1,0 +1,40 @@
+.tiptap-container {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.editor-menu-bar {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ccc;
+}
+
+.editor-menu-bar button {
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  margin: 0.2rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.editor-menu-bar button.is-active {
+  background-color: #333;
+  color: #fff;
+}
+
+.tiptap-editor {
+  padding: 1rem;
+  min-height: 250px;
+  outline: none;
+  background-color: #fff;
+}
+
+.tiptap-editor p {
+  margin: 0;
+}

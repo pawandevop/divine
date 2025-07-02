@@ -1,0 +1,39 @@
+# Step 1: Build Stage
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+# Install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy the rest of the app and build
+COPY . .
+RUN npm run build
+
+# Step 2: Production Image
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install only production dependencies
+COPY package*.json ./
+RUN npm install --omit=dev
+
+# Copy built app and necessary files from builder
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/src ./src
+COPY --from=builder /app/next.config.mjs ./next.config.mjs
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/package-lock.json ./package-lock.json
+
+# If you use other config files, copy them as needed
+# COPY --from=builder /app/jsconfig.json ./jsconfig.json
+
+# Cloud Run sets PORT env var, Next.js uses 3000 by default
+ENV PORT=8080
+EXPOSE 8080
+
+# Start Next.js app
+CMD ["npx", "next", "start", "-p", "8080"]

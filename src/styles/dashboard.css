@@ -1,0 +1,122 @@
+/* Dashboard Main Page Custom Styles */
+
+.dashboard-bg {
+  background: linear-gradient(135deg, #f8f5f2 0%, #f3e7d9 100%);
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInBg 0.8s;
+}
+
+@keyframes fadeInBg {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.dashboard-card {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px #b97a3a22, 0 1.5px 8px #ef9b0f11;
+  border: 1.5px solid #f3e7d9;
+  margin: 0 auto;
+  max-width: 480px;
+  width: 100%;
+  padding: 2.5rem 2rem 2rem 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: popInCard 0.7s cubic-bezier(.23, 1.01, .32, 1) 0.1s both;
+}
+
+@keyframes popInCard {
+  0% {
+    transform: scale(0.96) translateY(30px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.dashboard-heading {
+  font-size: 2.1rem;
+  color: #b97a3a;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  font-family: var(--secondry-font, inherit);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.dashboard-heading .divider {
+  flex: 1;
+  height: 1px;
+  background: #f3e7d9;
+  margin-left: 12px;
+  border-radius: 2px;
+}
+
+.dashboard-desc {
+  margin-bottom: 24px;
+  color: #7a6a53;
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: 500;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-widgets {
+  background: #fff;
+  box-shadow: 0 2px 8px #ef9b0f11;
+  border: 1px solid #f3e7d9;
+  padding: 24px;
+  border-radius: 14px;
+  margin-top: 18px;
+}
+
+.dashboard-widgets h3 {
+  font-size: 20px;
+  margin-bottom: 18px;
+  color: #b97a3a;
+  border-bottom: 1px solid #f3e7d9;
+  padding-bottom: 8px;
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+@media (max-width: 600px) {
+  .dashboard-bg {
+    padding: 0.5rem;
+  }
+
+  .dashboard-card {
+    max-width: 98vw !important;
+    padding: 12px !important;
+    border-radius: 10px !important;
+  }
+
+  .dashboard-heading {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .dashboard-desc {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+}

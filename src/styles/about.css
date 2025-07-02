@@ -1,0 +1,333 @@
+.about-doctor,
+.why-choose {
+  padding: 40px 0;
+}
+
+.about-doctor .para {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.about-doctor .about-img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  padding-right: 30px;
+}
+
+.about-doctor .pointers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.about-doctor .pointer {
+  display: flex;
+  gap: 10px;
+}
+
+.about-doctor .pointer img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-right: 18px;
+}
+
+.about-doctor .pointer-content span:first-child {
+  display: block;
+  font-size: 25px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-family: var(--third-font);
+}
+
+.about-doctor .pointer-content span:last-child {
+  font-size: 14px;
+}
+
+.about-gallery,
+section.know-more {
+  padding: 40px 0;
+  background-color: #fff2e0;
+}
+
+.know-more .common_heading {
+  margin-bottom: 50px;
+}
+
+.know-content {
+  background-color: #fff;
+  padding: 20px;
+  margin: 10px;
+  position: relative;
+}
+
+.know-border {
+  border: 2px solid var(--brown);
+}
+
+.know-more .knowmore-img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+
+.know-pointer {
+  margin-top: 20px;
+}
+
+.know-pointer li {
+  position: relative;
+  margin-bottom: 10px;
+  padding-left: 30px;
+}
+
+.know-pointer li::before {
+  content: "âž£";
+  position: absolute;
+  left: 0;
+  font-size: 22px;
+  color: #cda05c;
+  top: -5px;
+}
+
+.about-services {
+  padding-top: 40px;
+}
+
+.about-services .para {
+  text-align: center;
+  font-weight: 700;
+}
+
+.about-services .service-img,
+.why-choose img,
+.why-patient-content .circle-start img {
+  width: 100%;
+}
+
+.about-services .service-title {
+  font-size: 22px;
+  background-color: #fff;
+  text-align: center;
+  margin-top: -50px;
+  box-shadow: 0 -10px 50px -10px;
+  width: 90%;
+  position: relative;
+  z-index: 1;
+  padding: 20px 0;
+  text-transform: uppercase;
+}
+
+.services-container {
+  margin-top: 30px;
+}
+
+.services-container .for_scroll {
+  padding-bottom: 40px;
+  flex-wrap: nowrap;
+}
+
+.why-choose .para {
+  text-align: center;
+  width: 70%;
+  margin: auto auto 40px;
+}
+
+.why-choose li {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.why-choose li .value {
+  min-width: 50px;
+  min-height: 50px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--brown);
+  color: #fff;
+  border-radius: 50px;
+}
+
+.why-content span:first-child {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.gallery-images {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.g-image {
+  width: 25%;
+}
+
+.about-gallery img {
+  width: 100%;
+  padding: 10px;
+}
+
+.why-patients {
+  padding: 70px 0 40px;
+}
+
+.why-patient-content {
+  padding: 80px 40px 40px;
+  border: 2px solid var(--brown);
+  position: relative;
+}
+
+.why-patient-content .para {
+  text-align: center;
+}
+
+.why-patient-content .circle-start {
+  min-width: 60px;
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -30px;
+  border-radius: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  background-color: var(--brown);
+}
+
+@media (max-width: 576px) {
+  .about-doctor .pointers {
+    grid-template-columns: 1fr;
+  }
+
+  .about-doctor .about-img {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .about-doctor .para {
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .about-gallery .col-lg-3,
+  .g-image {
+    width: 50%;
+  }
+
+  .know-pointer li::before {
+    top: 32%;
+  }
+
+  .know-more .common_heading {
+    margin-bottom: 20px;
+  }
+
+  .about-services .para {
+    font-weight: 400;
+  }
+
+  .why-choose .para {
+    width: 100%;
+  }
+
+  .why-pointers {
+    margin-top: 20px;
+  }
+
+  .why-choose li .value {
+    min-width: 30px;
+    min-height: 30px;
+  }
+
+  .why-choose li {
+    margin-bottom: 10px;
+  }
+
+  .about-gallery img {
+    padding: 5px;
+  }
+
+  .why-patient-content {
+    padding: 40px 20px 20px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .about-doctor .pointers {
+    grid-template-columns: 1fr;
+  }
+
+  .about-doctor .about-img {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .about-doctor .para {
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .about-gallery .col-lg-3,
+  .g-image {
+    width: 50%;
+  }
+
+  .know-pointer li::before {
+    top: 32%;
+  }
+
+  .know-more .common_heading {
+    margin-bottom: 20px;
+  }
+
+  .about-services .para {
+    font-weight: 400;
+  }
+
+  .why-choose .para {
+    width: 100%;
+  }
+
+  .why-pointers {
+    margin-top: 20px;
+  }
+
+  .why-choose li .value {
+    min-width: 30px;
+    min-height: 30px;
+  }
+
+  .why-choose li {
+    margin-bottom: 10px;
+  }
+
+  .about-gallery img {
+    padding: 5px;
+  }
+
+  .why-patient-content {
+    padding: 40px 20px 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .about-doctor .about-img {
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+  .know-more .knowmore-img {
+    margin-top: 1rem;
+  }
+}

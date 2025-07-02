@@ -1,0 +1,116 @@
+.image-upload-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-upload-input {
+  display: none;
+}
+
+.image-upload-label {
+  background: linear-gradient(90deg, #ef9b0f 0%, #b97a3a 100%);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 24px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  box-shadow: 0 2px 8px #ef9b0f22;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+
+.image-upload-label:hover {
+  background: linear-gradient(90deg, #b97a3a 0%, #ef9b0f 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 16px #ef9b0f33;
+}
+
+.image-previews {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+
+.image-preview-item {
+  position: relative;
+  display: inline-block;
+}
+
+.image-preview-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 4px #ef9b0f11;
+  background: #fff;
+}
+
+.image-remove-btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 4px #0002;
+  padding: 0;
+  transition: background 0.15s;
+}
+
+.image-remove-btn:hover {
+  background: #f3e7d9;
+}
+
+.image-upload-btn {
+  margin-top: 8px;
+  background: linear-gradient(90deg, #ef9b0f 0%, #b97a3a 100%);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 24px;
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 1;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  box-shadow: 0 2px 8px #ef9b0f22;
+  letter-spacing: 0.5px;
+}
+
+.image-upload-btn:hover {
+  background: linear-gradient(90deg, #b97a3a 0%, #ef9b0f 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 16px #ef9b0f33;
+}
+
+.image-upload-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.image-upload-success {
+  margin-top: 18px;
+  color: #4bb543;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 500;
+}

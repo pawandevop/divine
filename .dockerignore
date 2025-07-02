@@ -1,0 +1,14 @@
+node_modules
+.next
+.git
+.gitignore
+Dockerfile
+*.zip
+.env
+.env.*
+*.md
+*.log
+*.test.*
+coverage
+.vscode
+*.swp

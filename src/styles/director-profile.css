@@ -1,0 +1,66 @@
+/* Styles for Director Profile Page */
+
+.doc-section {
+  background: #fff;
+  padding: 40px 0;
+}
+
+.doc-section .container {
+  /* No extra styles needed, but can be extended */
+}
+
+.doc-heading {
+  text-align: center;
+  font-weight: 400;
+}
+
+.doc-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  padding: 32px 24px;
+  margin-top: 32px;
+}
+
+.docContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 0;
+}
+
+.docImage {
+  flex: 0 0 420px;
+  text-align: center;
+}
+
+.docImage .doc-img {
+  border-radius: 16px;
+  object-fit: cover;
+  max-width: 100%;
+  padding: 0 24px;
+  height: auto;
+}
+
+.docContent {
+  flex: 1 1 260px;
+  min-width: 220px;
+}
+
+.docContent .doc-name {
+  font-weight: 600;
+  font-size: 20px;
+  color: #ef9b0f;
+}
+
+.doc-para {
+  margin-top: 16px;
+  font-size: 16px;
+  color: #222;
+}
+
+.doc-para p {
+  margin-top: 8px;
+}
