@@ -130,26 +130,32 @@ export default function ResultsDashboard() {
 
           <div className="results-widgets uploaded-section">
             <h3>Uploaded Results</h3>
+            <div style={{ color: '#b97a3a', marginBottom: 12, fontSize: 15 }}>
+              If you don&apos;t see your latest upload, please refresh the page.
+            </div>
             {isLoading ? (
               <p>Loading results...</p>
             ) : uploadedResults.length > 0 ? (
               <div className="uploaded-results-grid">
-                {uploadedResults.map((result, index) => (
-                  <div key={result._id} className="uploaded-result-card">
-                    <img src={result.imageUrl} alt={`Uploaded result ${index + 1}`} />
-                    <a href={result.imageUrl} target="_blank" rel="noopener noreferrer" className="view-link">
-                      <FiExternalLink /> View Full Size
-                    </a>
-                    <button
-                      className="delete-icon-btn"
-                      onClick={() => handleDeleteConfirm(result._id)}
-                      title="Delete"
-                      style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', padding: 6, cursor: 'pointer', zIndex: 2 }}
-                    >
-                      <FiTrash size={18} color="#fff" />
-                    </button>
-                  </div>
-                ))}
+                {(() => {
+                  const result = uploadedResults[0];
+                  return result ? (
+                    <div key={result._id} className="uploaded-result-card">
+                      <img src={result.imageUrl} alt="Latest uploaded result" />
+                      <a href={result.imageUrl} target="_blank" rel="noopener noreferrer" className="view-link">
+                        <FiExternalLink /> View Full Size
+                      </a>
+                      <button
+                        className="delete-icon-btn"
+                        onClick={() => handleDeleteConfirm(result._id)}
+                        title="Delete"
+                        style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', padding: 6, cursor: 'pointer', zIndex: 2 }}
+                      >
+                        <FiTrash size={18} color="#fff" />
+                      </button>
+                    </div>
+                  ) : null;
+                })()}
               </div>
             ) : (
               <p>No results have been uploaded yet.</p>

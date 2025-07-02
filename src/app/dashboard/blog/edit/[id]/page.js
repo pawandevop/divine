@@ -172,11 +172,12 @@ export default function EditBlogPost() {
               onChange={handleImageChange}
               disabled={loading}
             />
+            <div style={{ color: '#b97a3a', marginBottom: 12, fontSize: 15 }}>
+              If you don&apos;t see your latest image, please refresh the page.
+            </div>
             {existingImages.length > 0 && (
               <div className="blog-create-image-previews">
-                {existingImages.map((src, i) => (
-                  <img key={i} src={src} alt="existing" />
-                ))}
+                <img src={existingImages[0]} alt="existing" />
               </div>
             )}
             {previews.length > 0 && (

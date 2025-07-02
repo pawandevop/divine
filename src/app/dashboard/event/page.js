@@ -21,7 +21,7 @@ export default function EventDashboard() {
         const response = await fetch('/api/event');
         const data = await response.json();
         if (data.success) {
-          setUploadedImages(data.data.filter(item => item.active !== false));
+          setUploadedImages(data.data);
         } else {
           showToast('Failed to load event images.', 'error');
         }
@@ -128,26 +128,32 @@ export default function EventDashboard() {
 
           <div className="gallery-widgets uploaded-section">
             <h3>Event Images</h3>
+            <div style={{ color: '#b97a3a', marginBottom: 12, fontSize: 15 }}>
+              If you don&apos;t see your latest upload, please refresh the page.
+            </div>
             {isLoading ? (
               <p>Loading images...</p>
             ) : uploadedImages.length > 0 ? (
               <div className="uploaded-images-grid">
-                {uploadedImages.map((img, index) => (
-                  <div key={img._id || img.imageUrl || index} className="uploaded-image-card">
-                    <img src={img.imageUrl} alt={`Uploaded event image ${index + 1}`} />
-                    <a href={img.imageUrl} target="_blank" rel="noopener noreferrer" className="view-link">
-                      <FiExternalLink /> View Full Size
-                    </a>
-                    <button
-                      className="delete-icon-btn"
-                      onClick={() => handleDeleteConfirm(img._id)}
-                      title="Delete"
-                      style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', padding: 6, cursor: 'pointer', zIndex: 2 }}
-                    >
-                      <FiTrash size={18} color="#fff" />
-                    </button>
-                  </div>
-                ))}
+                {(() => {
+                  const img = uploadedImages[0];
+                  return img ? (
+                    <div key={img._id || img.imageUrl || 0} className="uploaded-image-card">
+                      <img src={img.imageUrl} alt="Latest uploaded event image" />
+                      <a href={img.imageUrl} target="_blank" rel="noopener noreferrer" className="view-link">
+                        <FiExternalLink /> View Full Size
+                      </a>
+                      <button
+                        className="delete-icon-btn"
+                        onClick={() => handleDeleteConfirm(img._id)}
+                        title="Delete"
+                        style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', padding: 6, cursor: 'pointer', zIndex: 2 }}
+                      >
+                        <FiTrash size={18} color="#fff" />
+                      </button>
+                    </div>
+                  ) : null;
+                })()}
               </div>
             ) : (
               <p>No event images have been uploaded yet.</p>

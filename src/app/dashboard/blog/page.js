@@ -109,6 +109,9 @@ export default function BlogDashboard() {
             </div>
 
             <div className="blog-dashboard-table-container">
+              <div style={{ color: '#b97a3a', marginBottom: 12, fontSize: 15 }}>
+                If you don&apos;t see your latest post, please refresh the page.
+              </div>
               {loading ? (
                 <div style={{ padding: '2rem', textAlign: 'center' }}>Loading...</div>
               ) : (
@@ -127,24 +130,27 @@ export default function BlogDashboard() {
                     {blogPosts.length === 0 ? (
                       <tr><td colSpan={5} style={{ textAlign: 'center' }}>No blog posts found.</td></tr>
                     ) : (
-                      blogPosts.map((post, idx) => (
-                        <tr key={post._id || idx}>
-                          <td className="sno-cell">{idx + 1}</td>
-                          <td className="title-cell">{post.title}</td>
-                          <td className="category-cell">{post.category}</td>
-                          <td className="published-cell">
-                            {post.status === 'published' ? (
-                              <span className="yes">Yes</span>
-                            ) : (
-                              <span className="no">No</span>
-                            )}
-                          </td>
-                          <td className="blog-dashboard-actions">
-                            <button className="edit-btn" onClick={() => handleEdit(post._id)}><FiEdit3 /> Edit</button>
-                            <button className="delete-btn" onClick={() => handleDelete(post._id)}><FiTrash2 /> Delete</button>
-                          </td>
-                        </tr>
-                      ))
+                      (() => {
+                        const post = blogPosts[0];
+                        return post ? (
+                          <tr key={post._id}>
+                            <td className="sno-cell">1</td>
+                            <td className="title-cell">{post.title}</td>
+                            <td className="category-cell">{post.category}</td>
+                            <td className="published-cell">
+                              {post.status === 'published' ? (
+                                <span className="yes">Yes</span>
+                              ) : (
+                                <span className="no">No</span>
+                              )}
+                            </td>
+                            <td className="blog-dashboard-actions">
+                              <button className="edit-btn" onClick={() => handleEdit(post._id)}><FiEdit3 /> Edit</button>
+                              <button className="delete-btn" onClick={() => handleDelete(post._id)}><FiTrash2 /> Delete</button>
+                            </td>
+                          </tr>
+                        ) : null;
+                      })()
                     )}
                   </tbody>
                 </table>
